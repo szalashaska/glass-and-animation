@@ -1,0 +1,227 @@
+:root {
+    --green: #38ccae;
+    --dark: #1b1b1b;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--green);
+    background: linear-gradient(to right top, var(--dark), var(--green));
+    color: #fff;
+    overflow: hidden; /* obraz nie poszerza się gdy animacja wykroczy poza granicę */
+    font-family: 'Montserrat', sans-serif;
+}
+
+.container {
+    max-width: 1200px;
+    max-height: 80vh;
+    display: flex;
+    flex-wrap: wrap;
+    background: rgba(0, 0, 0, 0.75);
+    background: linear-gradient(to right top, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.25));
+    padding: 32px 92px;
+    border-radius: 20px;
+    position: relative;
+    backdrop-filter: blur(8px); 
+    -webkit-backdrop-filter: blur(8px);
+    overflow: auto;
+}
+
+.bg__img {
+    position: absolute;
+}
+
+.bg__img--button {
+    top: 30vh; /* zmiana z 0 aby lepiej animowało */
+    right: 60%;
+    animation: slideDown 12s linear infinite;
+}
+
+.bg__img--dots {
+    top: 0;
+    left: 50%;
+    height: 75vh;
+    animation: rotate 25s linear infinite;
+}
+
+.bg__img--logo {
+    left: 0;
+    top: 50%;
+    width: 50%;
+    opacity: 0.25;
+    transform: translate(-50%, -50%);
+}
+
+header {
+    flex: 1;
+}
+
+h1 {
+    font-size: 48px;
+    padding: 24px 0 12px;
+}
+
+p {
+    font-size: 20px; 
+    font-weight: 400;
+    padding-bottom: 12px;
+    line-height: 32px;
+}
+
+a {
+    color: var(--green);
+    text-decoration: none;
+    position: relative;
+}
+
+.logo {
+    width: 150px;
+    margin-right: 100px;
+}
+
+.logo img {
+    width: 100%;
+}
+
+main {
+    display: flex;
+}
+
+.person__img {
+    width: 200px;
+    height: 200px;
+    background: var(--green);
+    border: solid 3px #fff;
+    border-radius: 100%;
+    overflow: hidden;
+}
+
+section:first-child {
+    margin-right: 100px;
+}
+
+.people {
+    height: 100%;
+    display: flex;
+    padding-bottom: 24px;
+}
+
+.person__img img {
+    width: 100%;
+}
+
+.person__name {
+    display: block;
+    margin-top: 16px;
+    text-align: center;
+    font-size: 32px;
+    font-weight: 700;
+    background: linear-gradient(90deg, var(--green), #fff);
+    color: #fff; /* bez webikt-text-fill-color byłoby transparent */
+    background-clip: text;
+    -webkit-background-clip: text; /* przycina tło do samego tekstu */
+    -webkit-text-fill-color: transparent;
+}
+
+.person:last-child {
+    align-self: flex-end;
+}
+
+.person__img--filip img {
+    transform: translate(10px, -30px); /* przesuwamy zdjecie wewnątrz kontenera (okrągłej ramki), centrujemy je*/
+}
+
+button {
+    width: 350px;
+    padding: 16px 0;
+    margin-top: 32px;
+    font-size: 42px;
+    font-weight: 700;
+    color: #fff;
+    background: var(--green);
+    background: linear-gradient(to right top, var(--green), rgba(255, 255, 255, 0.6));
+    border: none;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+button:focus {
+    outline-color: #fff;
+}
+
+button:after {
+    content:  "";
+    width: 50px;
+    height: 150%;
+    position: absolute;
+    left: -100px;
+    top: -20px;
+    background-color: rgba(255, 255, 255, 0.4);
+    transform: rotate(20deg);
+    transition: transform 0.4s;
+}
+
+button:hover:after {
+    transform: translateX(500px) rotate(20deg);
+}
+
+/* w sytuacji, gdy wykorzystujemy element <span> zpozycjonowany do linku
+.link__border {
+    width: 0%;
+    height: 3px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--green);
+    background: linear-gradient(90deg, transparent, var(--green));
+    transition: width 0.3s;
+}
+
+a:hover .link__border {
+    width: 100%;
+}
+
+*/
+
+/* dodajemy content: ""; */
+a:after {
+    content: "";
+    width: 0%;
+    height: 3px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--green);
+    background: linear-gradient(90deg, transparent, var(--green));
+    transition: width 0.3s;
+}
+
+
+a:hover:after {
+    width: 100%;
+}
+
+@keyframes slideDown {
+    /* nie zaleca się używać właściwości top, lepiej transform
+    from {top: 0}
+    to {top: 100%}
+    */
+    from {transform: translateY(-30vh);}  /* musimy zacząć wyżej */
+    to {transform: translateY(100vh);} /* 100% odpowiadałoby wysokości elementu */
+}
+
+@keyframes rotate {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(360deg);}
+}
